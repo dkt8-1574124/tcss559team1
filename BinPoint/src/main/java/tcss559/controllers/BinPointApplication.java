@@ -14,8 +14,8 @@ public class BinPointApplication extends Application{
 	@Override
 	public Set<Class<?>> getClasses() {
 		HashSet h = new HashSet<Class<?>>();
-		//add classes that you wish to be supported by application
-		//h.add( gcpREST.class );
+		// add classes that you wish to be supported by application
+		// h.add( gcpREST.class );
 		return h;
 	}
 }
