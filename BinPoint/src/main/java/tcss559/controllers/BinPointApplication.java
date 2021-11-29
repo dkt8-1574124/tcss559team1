@@ -1,6 +1,9 @@
 package tcss559.controllers;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
+
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
+
 import java.util.HashSet;
 import java.util.Set;
 @ApplicationPath("/api")
@@ -13,9 +16,12 @@ public class BinPointApplication extends Application{
 	// going to be handled when published our JAX-RS application
 	@Override
 	public Set<Class<?>> getClasses() {
-		HashSet h = new HashSet<Class<?>>();
+		HashSet resources = new HashSet<Class<?>>();
 		//add classes that you wish to be supported by application
-		//h.add( gcpREST.class );
-		return h;
+		//resources.add( gcpREST.class );
+		resources.add(Upload.class);
+		resources.add(MultiPartFeature.class);
+	
+		return resources;
 	}
 }
