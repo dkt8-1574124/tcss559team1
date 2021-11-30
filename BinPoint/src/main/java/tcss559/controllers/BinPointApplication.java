@@ -24,6 +24,8 @@ public class BinPointApplication extends Application{
 		//resources.add( gcpREST.class );
 		resources.add(Upload.class);
 		resources.add(MultiPartFeature.class);
+		resources.add(User.class);
+		resources.add(Company.class);
 	
 		return resources;
 	}
