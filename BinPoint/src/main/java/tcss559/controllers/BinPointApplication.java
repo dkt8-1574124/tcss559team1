@@ -16,12 +16,14 @@ public class BinPointApplication extends Application{
 	// going to be handled when published our JAX-RS application
 	@Override
 	public Set<Class<?>> getClasses() {
+		HashSet h = new HashSet<Class<?>>();
+		// add classes that you wish to be supported by application
+		// h.add( gcpREST.class );
 		HashSet resources = new HashSet<Class<?>>();
 		//add classes that you wish to be supported by application
 		resources.add(Upload.class);
 		resources.add(MultiPartFeature.class);
 		resources.add(Household.class);
-		
 		return resources;
 	}
 }

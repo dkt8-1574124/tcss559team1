@@ -46,7 +46,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 // relative URI path which will serve as the base class to host REST API
-// http://localhost:port_number/REST
+// http://localhost:port_number/upload
 @Path("/upload")
 public class Upload {
 	public String mysql_ip = "34.133.84.229";
@@ -162,7 +162,7 @@ public class Upload {
             while (resultSet.next() ) {
 	            JSONArray emplObject = new JSONArray();
             	emplObject.put( resultSet.getString("CreatedDate"));
-            	emplObject.put(resultSet.getString("ProcessStatus"));
+            	emplObject.put( resultSet.getString("ProcessStatus"));
             	emplObject.put( resultSet.getString("CompletedDate"));
             	emplObject.put( resultSet.getString("ServiceRequestNumber"));
             	emplObject.put( resultSet.getString("BlackCartsDelivered"));
