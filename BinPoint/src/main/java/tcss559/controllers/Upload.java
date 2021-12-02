@@ -90,7 +90,8 @@ public class Upload {
 			
 			List<List<String>> records = new ArrayList<>();
 			int c= 0; //set limit to 20, test first
-			Scanner scanner = new Scanner(new File("C:\\Users\\binca\\Documents\\GitHub\\BinPoint\\src\\main\\java\\tcss559\\controllers\\chicago-garbage.csv")); 
+			Scanner scanner = new Scanner(new File("C:\\Users\\bradl\\git\\tcss559team1\\BinPoint\\src\\main\\java\\tcss559\\controllers\\chicago-garbage.csv"));
+			// Scanner scanner = new Scanner(new File("C:\\Users\\binca\\Documents\\GitHub\\BinPoint\\src\\main\\java\\tcss559\\controllers\\chicago-garbage.csv")); 
 			scanner.nextLine();
 			while (scanner.hasNextLine() && c < 10) {
 		    	List<String> row = getRecordFromLine(scanner.nextLine());
