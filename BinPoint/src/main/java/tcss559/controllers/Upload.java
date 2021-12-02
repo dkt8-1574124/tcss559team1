@@ -54,7 +54,7 @@ public class Upload {
 	public String password = "tcss559";
     // do not change the connectStr, keep it as is!
 	public String connectStr ="jdbc:mysql://" + mysql_ip + ":3306/garbage?user=" + username + "&password=" + password ;
-
+	
 	//convert csv file into my sql
 	@GET  
     @Path("/file")  

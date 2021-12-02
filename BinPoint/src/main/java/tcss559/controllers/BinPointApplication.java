@@ -18,10 +18,10 @@ public class BinPointApplication extends Application{
 	public Set<Class<?>> getClasses() {
 		HashSet resources = new HashSet<Class<?>>();
 		//add classes that you wish to be supported by application
-		//resources.add( gcpREST.class );
 		resources.add(Upload.class);
 		resources.add(MultiPartFeature.class);
-	
+		resources.add(Household.class);
+		
 		return resources;
 	}
 }
