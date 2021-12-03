@@ -50,6 +50,12 @@ import org.json.JSONObject;
 @Path("/upload")
 public class Upload {
 	public String mysql_ip = "34.133.84.229";
+	// VM site address
+	// public String VMmysql_ip = "35.236.24.186";
+	// VM MySQL user
+	// public String username = "root";
+	// VM MySQL password
+	// public String password = "Qc7BNmg3PoV94o";
 	public String username = "tcss559";
 	public String password = "tcss559";
     // do not change the connectStr, keep it as is!

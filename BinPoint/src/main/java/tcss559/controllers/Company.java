@@ -51,13 +51,62 @@ import org.json.JSONObject;
 @Path("/company")
 public class Company {
 	// TODO: declare fields
-	
-	// allows the company to change garbage weights for 
+
+	// allows the company to change garbage weights for household
 	@Path("/weight")
 	@POST
 	@Produces("text/json")
-	public void garbageWeightMeasurement() {
-		
+	public void garbageWeightMeasurementPOST() {
+
+	}
+
+	// allows the company to change garbage weights for household
+	@Path("/weight")
+	@DELETE
+	@Produces("text/json")
+	public void garbageWeightMeasurementDELETE() {
+
+	}
+
+	// allows the company to change garbage weights for household
+	@Path("/weight")
+	@PUT
+	@Produces("text/json")
+	public void garbageWeightMeasurementPUT() {
+
+	}
+
+	// notifies the company when a container is full and needs to be picked up
+	@Path("/full")
+	@GET
+	@Produces("text/json")
+	public void fullContainerIndicator() {
+		// point to mysql database and get boolean field (full)
+		// if full is true
+		// send notification to user
 	}
 	
+	// gives company the location to pick up full garbage
+	@Path("/location")
+	@GET
+	@Produces("text/json")
+	public void locationTracking() {
+		/*
+		 * scan database where users have above 75% full garbage
+		 * add those users to a map
+		 * sort the locations by proximity
+		 * create the path for garbage trucks
+		 */
+	}
+	
+	// classifies neighborhood about garbage statistics
+	@Path("/neighborhood")
+	@GET
+	@Produces("text/json")
+	public void neighborhoodInformation() {
+		/*
+		 * 
+		 */
+	}
+
 }
