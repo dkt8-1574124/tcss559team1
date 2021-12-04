@@ -49,19 +49,21 @@ import org.json.JSONObject;
 // http://localhost:port_number/upload
 @Path("/upload")
 public class Upload {
+	// Google SQL server!
 	public String mysql_ip = "34.133.84.229";
-	// VM site address
-	// public String VMmysql_ip = "35.236.24.186";
-	// VM MySQL user
-	// public String username = "root";
-	// VM MySQL password
-	// public String password = "Qc7BNmg3PoV94o";
 	public String username = "tcss559";
 	public String password = "tcss559";
-    // do not change the connectStr, keep it as is!
 	public String connectStr ="jdbc:mysql://" + mysql_ip + ":3306/garbage?user=" + username + "&password=" + password ;
-	
-	//convert csv file into my sql
+	 
+//	 //VM site address
+//	 public String VMmysql_ip = "35.236.24.186";
+//	 //VM MySQL user
+//	 public String username = "root";
+//	 //VM MySQL password
+//	 public String password = "Qc7BNmg3PoV94o";
+//	 public String connectStr ="jdbc:mysql://" + VMmysql_ip + ":8000/garbage?user=" + username + "&password=" + password ;
+
+	//convert csv file into mysql
 	@GET  
     @Path("/file")  
     @Consumes(MediaType.MULTIPART_FORM_DATA)  
@@ -86,8 +88,8 @@ public class Upload {
     				+ "	CartStatus VARCHAR(60) NOT NULL,\r\n"
     				+ "	StreetAddress VARCHAR(60) NOT NULL,\r\n"
     				+ "	ZipCode INT NOT NULL,\r\n"
-    				+ "	Latitude DECIMAL NOT NULL,\r\n"
-    				+ "	Longitude DECIMAL NOT NULL,\r\n"
+    				+ "	Latitude DECIMAL(8,6) NOT NULL,\r\n"
+    				+ "	Longitude DECIMAL(9,6) NOT NULL,\r\n"
     				+ "	LoadWeight INT NOT NULL,\r\n"
     				+ "	LoadCapacity INT NOT NULL,\r\n"
     				+ "    Note VARCHAR(60),\r\n"
@@ -95,20 +97,19 @@ public class Upload {
     				+ ");");
 			
 			List<List<String>> records = new ArrayList<>();
-			int c= 0; //set limit to 20, test first
-			Scanner scanner = new Scanner(new File("C:\\Users\\bradl\\git\\tcss559team1\\BinPoint\\src\\main\\java\\tcss559\\controllers\\chicago-garbage.csv"));
-			// Scanner scanner = new Scanner(new File("C:\\Users\\binca\\Documents\\GitHub\\BinPoint\\src\\main\\java\\tcss559\\controllers\\chicago-garbage.csv")); 
+			int c= 0; //set limit to 10, test first
+			//Scanner scanner = new Scanner(new File("C:\\Users\\bradl\\git\\tcss559team1\\BinPoint\\src\\main\\java\\tcss559\\controllers\\chicago-garbage.csv"));
+			Scanner scanner = new Scanner(new File("C:\\Users\\binca\\Documents\\GitHub\\BinPoint\\src\\main\\java\\tcss559\\controllers\\chicago-garbage.csv")); 
 			scanner.nextLine();
 			while (scanner.hasNextLine() && c < 10) {
 		    	List<String> row = getRecordFromLine(scanner.nextLine());
 		        records.add(row);
-		        
 		        String createDate = row.get(0).replaceAll("/", "-");   //Need to change this to date type in the future
 		        String dumpStatus = row.get(1);
 		        String completeDate = row.get(2).replaceAll("/", "-");
 		        String requestID = row.get(3);
 		        int cartsNum;
-		        if (row.get(5).equals("") || row.get(5) != null) {
+		        if (row.get(5).equals("") || row.get(5) == null) {
 		        	cartsNum = 0; 
 		        } else {
 		        	cartsNum = Integer.parseInt(row.get(5));
@@ -118,9 +119,9 @@ public class Upload {
 		        int zipCode = Integer.parseInt(row.get(9));
 		        double lat = Double.parseDouble(row.get(16));
 		        double lng = Double.parseDouble(row.get(17));
-		        //int weightLoad = Integer.parseInt(row.get(19));      Need to random generate later on
-		        //int weightCapacity = Integer.parseInt(row.get(20));  Need to random generate later on
-		        //String note = row.get(21);						   Need to random generate later on
+		        int weightLoad = Integer.parseInt(row.get(20));      //Need to random generate later on
+		        int weightCapacity = Integer.parseInt(row.get(21));  //Need to random generate later on
+		        String note = "NA";
 		        
 		        String SQL = "INSERT INTO Records VALUES ("
 		        		+ "\"" + createDate 		+ "\","
@@ -133,9 +134,9 @@ public class Upload {
 	            		 + zipCode 		+ ","
 	            		 + lat 		+ ","
 	            		 + lng 		+ ","
-	            		 + 0 		+ ","
-	            		 + 0 		+ ","	            		 
-	            		 + "\"" +  "\"" 	+  ")";
+	            		 + weightLoad 		+ ","
+	            		 + weightCapacity 		+ ","	            		 
+	            		 + "\"" + note  + "\"" 	+  ")";
 		        System.out.println("SQL: " + SQL);
 	    		sqlStatement.executeUpdate(SQL);
 		        c++;
@@ -185,6 +186,48 @@ public class Upload {
             }
             
             //emplJSON.put("employees", emplArray);
+            return Response
+            	      .status(Response.Status.OK)
+            	      .header("table", "Records")
+            	      .entity(emplArray.toString())
+            	      .build();
+        } catch(Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+	
+	//just to display for the user page
+	@Path("/select-one-random")
+	@GET
+	@Produces("text/json")
+	public Response SelectOneRandom ()  {
+        try {
+        	Class.forName("com.mysql.cj.jdbc.Driver");
+        	Connection connection = DriverManager.getConnection(connectStr); 
+    		Statement sqlStatement = connection.createStatement();	 
+    		ResultSet resultSet = sqlStatement.executeQuery("Select * from Records ORDER BY RAND() LIMIT 1;");
+            JSONObject emplJSON = new JSONObject();
+            JSONArray emplArray = new JSONArray();
+            while (resultSet.next() ) {
+	            JSONArray emplObject = new JSONArray();
+            	emplObject.put( resultSet.getString("CreatedDate"));
+            	emplObject.put( resultSet.getString("ProcessStatus"));
+            	emplObject.put( resultSet.getString("CompletedDate"));
+            	emplObject.put( resultSet.getString("ServiceRequestNumber"));
+            	emplObject.put( resultSet.getString("BlackCartsDelivered"));
+            	emplObject.put( resultSet.getString("CartStatus"));
+            	emplObject.put( resultSet.getString("StreetAddress"));
+            	emplObject.put( resultSet.getString("ZipCode"));
+            	emplObject.put( resultSet.getDouble("Latitude"));
+            	emplObject.put( resultSet.getDouble("Longitude"));
+            	emplObject.put( resultSet.getInt("LoadWeight"));
+            	emplObject.put( resultSet.getInt("LoadCapacity"));
+            	emplObject.put( resultSet.getString("Note"));
+            	emplArray.put(emplObject);
+            }
+            
+            System.out.println("emplArray.toString(): " + emplArray.toString());
             return Response
             	      .status(Response.Status.OK)
             	      .header("table", "Records")

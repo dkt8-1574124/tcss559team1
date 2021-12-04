@@ -71,7 +71,7 @@ public class Household {
 	@Path("/")
 	@GET
 	@Produces("text/json")
-	public String getLocalWeather() throws UnirestException {
+	public String getLatLng() throws UnirestException {
 		String current_ip = getIPHandler();
 		Unirest.config().verifySsl(false);
 		HttpResponse<String> response = Unirest.get("https://ip-geo-location.p.rapidapi.com/ip/" + current_ip + "?format=json")

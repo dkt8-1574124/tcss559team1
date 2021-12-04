@@ -71,26 +71,40 @@
             <div class="u-layout-row">
               <div class="u-size-30">
                 <div class="u-layout-col">
-                  <div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-30 u-white u-layout-cell-1">
-                    <div class="u-container-layout u-valign-middle u-container-layout-1">
-                      <h2 class="u-text u-text-1">Business Center</h2>
-                      <p class="u-text u-text-2">350 5th Ave, New York, NY 10118</p>
-                      <p class="u-text u-text-3">1 212-736-3100</p>
-                      <p class="u-text u-text-4">contacts@esbnyc.com</p>
-                    </div>
+                  <div class="u-size-30">
+                    <div class="u-layout-row">
+                      <div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-60 u-white u-layout-cell-1">
+                        <div class="u-container-layout u-valign-middle u-container-layout-1">
+                          <h2 class="u-text u-text-1">Your Current Bin's Information</h2>
+                          <p id="address" class="u-text u-text-2">350 5th Ave, New York, NY 10118</p>
+                          <p id="city" class="u-text u-text-3">1 212-736-3100</p>
+                          <p id="zipcode" class="u-text u-text-4">contacts@esbnyc.com</p>
+                        </div>
+                      </div>
+                   </div>
                   </div>
-                  <div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-30 u-white u-layout-cell-2">
-                    <div class="u-container-layout u-valign-middle u-container-layout-2">
-                      <h2 class="u-text u-text-5">Sample Headline</h2>
-                      <p class="u-text u-text-6">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
-                    </div>
+                  <div class="u-size-30">
+                    <div class="u-layout-row">
+                      <div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-30 u-white u-layout-cell-2">
+                        <div class="u-container-layout u-valign-middle u-container-layout-2">
+                          <h2 class="u-text u-text-5">Sample Headline2</h2>
+                          <p class="u-text u-text-6">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+                        </div>
+                      </div>
+                      <div class="u-container-style u-layout-cell u-size-30">
+                        <div class="u-container-layout u-container-layout-3">
+                          <h2 class="u-text u-text-7">Sample Headline2</h2>
+                          <p class="u-text u-text-8">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+                        </div>
+                      </div>
+                   </div>
                   </div>
                 </div>
               </div>
               <div class="u-size-30">
                 <div class="u-layout-row">
-                  <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-60 u-layout-cell-3">
-                    <div class="u-container-layout u-container-layout-3">
+                  <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-60 u-layout-cell-4">
+                    <div class="u-container-layout u-container-layout-4">
                       <div class="u-align-left u-expanded u-grey-10 u-map">
                         <div id="map" class="embed-responsive">
                         
@@ -127,13 +141,15 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy_Gi3lu5iozQisJPSFPEbARrsmsx1JCQ&callback=initMap&libraries=&v=weekly"async></script>
   <script type="text/javascript">
 	  $(document).ready(function () {
-	      var uri = "api/household";
-	      console.log("uri: " + uri);
+	      //var uri = "api/household"; //binpoint/api/household
+	      //console.log("uri: " + uri);
 	      
-	      $.getJSON(uri).done(function (data) {
+	      //binpoint/api/household
+	      /*$.getJSON("api/household").done(function (data) {
 		      //display current location of user's bin (in this case, we just their house location)
-	          processData = JSON.parse(JSON.stringify(data));
-	      	  console.log(processData);
+	          processData = JSON.parse(JSON.stringify(data));      	
+      
+		      console.log(processData);
 	      	  var lat = processData.location.latitude
 	      	  console.log(processData.location.latitude);
 	      	  var lng = processData.location.longitude
@@ -146,6 +162,30 @@
 			      center: bin_loc,
 			  });
 			  // The marker, positioned at Uluru
+			  const marker = new google.maps.Marker({
+			      position: bin_loc,
+			      map: map,
+			      icon: 'bin_icon.png'
+			  });
+	      });*/
+	      
+	      $.getJSON("api/upload/select-one-random").done(function (data) {
+		      //display current location of user's bin (in this case, we just their house location)
+	          processData = JSON.parse(JSON.stringify(data));      	
+	          const jArray = processData[0];
+		      console.log("processData");console.log(jArray);
+			  $("#address").text(jArray[6] + ", Chicago, " + jArray[7]);
+			  $("#city").text();
+			  $("#zipcode").text(jArray[7]);
+		      //var theLat = parseDouble(jArray[8]);
+		      //var theLng = parseDouble(jArray[9]);
+		      
+			  const bin_loc = { lat: jArray[8], lng: jArray[9] };
+			  const map = new google.maps.Map(document.getElementById("map"), {
+			      zoom: 17,
+			      center: bin_loc,
+			  });
+
 			  const marker = new google.maps.Marker({
 			      position: bin_loc,
 			      map: map,
