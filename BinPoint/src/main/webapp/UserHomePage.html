@@ -13,7 +13,13 @@
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.0.3, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
-    
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+    <style>
+		.isDisabled {
+		  cursor: not-allowed;
+		  opacity: 0.5;
+		}
+	</style>
     
     <script type="application/ld+json">{
 		"@context": "http://schema.org",
@@ -25,10 +31,11 @@
     <meta property="og:title" content="UserHomePage">
     <meta property="og:type" content="website">
   </head>
-  <body class="u-body"><header class="u-clearfix u-header u-header" id="sec-b6c1"><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-        <a href="https://nicepage.com" class="u-image u-logo u-image-1">
-          <img src="images/default-logo.png" class="u-logo-image u-logo-image-1">
+  <body class="u-body"><header class="u-clearfix u-header u-header" id="sec-b6c1"><div class="u-clearfix u-sheet u-sheet-1">
+        <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="150" data-image-height="142">
+          <img src="images/bin_icon.png" class="u-logo-image u-logo-image-1">
         </a>
+        <h1 class="u-text u-text-default u-text-1">BinPoint</h1>
         <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
           <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
             <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
@@ -66,46 +73,71 @@
       </div></header>
     <section class="u-clearfix u-section-1" id="sec-46fc">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <div class="u-clearfix u-expanded-width u-gutter-30 u-layout-spacing-vertical u-layout-wrap u-layout-wrap-1">
-          <div class="u-gutter-0 u-layout">
-            <div class="u-layout-row">
-              <div class="u-size-30">
-                <div class="u-layout-col">
+        <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-spacing-vertical u-layout-wrap u-layout-wrap-1">
+          <div class="u-gutter-0 u-layout" style="">
+            <div class="u-layout-row" style="">
+              <div class="u-size-26" style="">
+                <div class="u-layout-col" style="">
                   <div class="u-size-30">
                     <div class="u-layout-row">
                       <div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-60 u-white u-layout-cell-1">
-                        <div class="u-container-layout u-valign-middle u-container-layout-1">
-                          <h2 class="u-text u-text-1">Your Current Bin's Information</h2>
-                          <p id="address" class="u-text u-text-2">350 5th Ave, New York, NY 10118</p>
-                          <p id="city" class="u-text u-text-3">1 212-736-3100</p>
-                          <p id="zipcode" class="u-text u-text-4">contacts@esbnyc.com</p>
+                        <div class="u-container-layout u-container-layout-1">
+                          <h2 class="u-text u-text-1">Your Current Bin's Information&nbsp;</h2>
+                          <p id="address" class="u-text u-text-palette-3-base u-text-2">
+                            <span class="u-text-black"> Address:</span> 6140 S DAMEN AVE, Chicago, 60636
+                          </p>
+                          <p id="lat_lng" class="u-text u-text-palette-2-base u-text-3">
+                            <span class="u-text-black"> Langitude, longitude: </span>41.78176, -87.674113
+                          </p>
+                          <p id="last_pickup" class="u-text u-text-palette-4-base u-text-4">
+                            <span class="u-text-black"> Last pickup:</span> 4 days ago
+                          </p>
                         </div>
                       </div>
-                   </div>
+                    </div>
                   </div>
-                  <div class="u-size-30">
-                    <div class="u-layout-row">
+                  <div class="u-size-30" style="">
+                    <div class="u-layout-row" style="">
                       <div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-30 u-white u-layout-cell-2">
-                        <div class="u-container-layout u-valign-middle u-container-layout-2">
-                          <h2 class="u-text u-text-5">Sample Headline2</h2>
-                          <p class="u-text u-text-6">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+                        <div class="u-container-layout u-container-layout-2">
+                          <img id="bin_pic" class="u-image u-image-default u-preserve-proportions u-image-1" src="images/bin_0.png" alt="" data-image-width="512" data-image-height="512">
                         </div>
                       </div>
-                      <div class="u-container-style u-layout-cell u-size-30">
+                      <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-3">
                         <div class="u-container-layout u-container-layout-3">
-                          <h2 class="u-text u-text-7">Sample Headline2</h2>
-                          <p class="u-text u-text-8">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+                          <h2 class="u-text u-text-5">Bin's Status</h2>
+                          <p class="u-text u-text-6">You've used</p>
+                          <div class="u-list u-list-1">
+                            <div class="u-repeater u-repeater-1">
+                              <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-1">
+                                <div id="used_capacity" class="u-container-layout u-similar-container u-valign-middle u-container-layout-4">
+                                  <h3 class="u-custom-font u-font-montserrat u-text u-text-default u-text-palette-2-base u-text-7" data-animation-name="counter" data-animation-event="scroll" data-animation-duration="3000">17</h3>
+                                  <p class="u-text u-text-default u-text-8">Lbs</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <p class="u-text u-text-9">out of 50 lbs</p>
+                          <div  class="u-container-style u-group u-palette-1-light-2 u-radius-50 u-shape-round u-group-1">
+                            <div id="cannot_pickup" class="u-container-layout u-container-layout-5">
+                              <p class="u-align-center u-text u-text-10">CANNOT REQUEST EARLY PICKUP</p>
+                            </div>
+                          </div>
+                          <div id="pickup">
+	                          <a href="https://nicepage.com/k/presentation-html-templates" class="u-align-center u-border-none u-btn u-btn-round u-button-style u-custom-color-1 u-hover-palette-2-light-1 u-radius-50 u-text-hover-palette-3-light-1 u-text-palette-3-base u-btn-1"> &nbsp;​&nbsp;Request early pickup</a>
+	                          <img class="u-image u-image-circle u-preserve-proportions u-image-2" src="images/pngwing.com.png" alt="" data-image-width="889" data-image-height="889">
+                          </div>
                         </div>
                       </div>
-                   </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="u-size-30">
+              <div class="u-size-34">
                 <div class="u-layout-row">
                   <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-60 u-layout-cell-4">
-                    <div class="u-container-layout u-container-layout-4">
-                      <div class="u-align-left u-expanded u-grey-10 u-map">
+                    <div class="u-container-layout u-container-layout-6">
+                      <div class="u-align-left u-grey-10 u-map u-map-1">
                         <div id="map" class="embed-responsive">
                         
 						</div>
@@ -136,50 +168,61 @@
       </a>. 
     </section>
   </body>
- 
-  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+  
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy_Gi3lu5iozQisJPSFPEbARrsmsx1JCQ&callback=initMap&libraries=&v=weekly"async></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="text/javascript">
-	  $(document).ready(function () {
-	      //var uri = "api/household"; //binpoint/api/household
-	      //console.log("uri: " + uri);
-	      
-	      //binpoint/api/household
-	      /*$.getJSON("api/household").done(function (data) {
-		      //display current location of user's bin (in this case, we just their house location)
-	          processData = JSON.parse(JSON.stringify(data));      	
-      
-		      console.log(processData);
-	      	  var lat = processData.location.latitude
-	      	  console.log(processData.location.latitude);
-	      	  var lng = processData.location.longitude
-	      	  console.log(processData.location.longitude);
-			  //$("#map").html("<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d674.1720573976693!2d'+ lng + '!3d'+ lat + '!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x911ddee6ba605928!2zNDfCsDI4JzM1LjQiTiAxMjLCsDA3JzUyLjEiVw!5e0!3m2!1sen!2sus!4v1638402175920!5m2!1sen!2sus\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\"></iframe>");
-			  //get the lat-long data to plug in google map	      	  
-			  const bin_loc = { lat: lat, lng: lng };
-			  const map = new google.maps.Map(document.getElementById("map"), {
-			      zoom: 17,
-			      center: bin_loc,
-			  });
-			  // The marker, positioned at Uluru
-			  const marker = new google.maps.Marker({
-			      position: bin_loc,
-			      map: map,
-			      icon: 'bin_icon.png'
-			  });
-	      });*/
-	      
+	  $(document).ready(function () {	      
 	      $.getJSON("api/upload/select-one-random").done(function (data) {
 		      //display current location of user's bin (in this case, we just their house location)
 	          processData = JSON.parse(JSON.stringify(data));      	
 	          const jArray = processData[0];
 		      console.log("processData");console.log(jArray);
-			  $("#address").text(jArray[6] + ", Chicago, " + jArray[7]);
-			  $("#city").text();
-			  $("#zipcode").text(jArray[7]);
-		      //var theLat = parseDouble(jArray[8]);
-		      //var theLng = parseDouble(jArray[9]);
 		      
+		      //Display user's bin information
+			  //$("#address").text("Address: " + jArray[6] + ", Chicago, " + jArray[7]);
+			  $("#address").html("<span class=\"u-text-black\"> <b>Address</b>\: </span>" + jArray[6] + ", Chicago, " + jArray[7] );
+			  //$("#lat_lng").text("Langitude, longitude: " + jArray[8].toString() + ", " + jArray[9].toString());
+			  $("#lat_lng").html("<span class=\"u-text-black\"> <b>Coordinates</b>\: </span>" + jArray[8].toString() + ", " + jArray[9].toString());
+	      	  //$("#last_pickup").text("Last pickup: " + Math.floor(Math.random() * 7) + " days ago");
+	      	  $("#last_pickup").html("<span class=\"u-text-black\"> <b>Last pickup</b>\: </span>" + Math.floor(Math.random() * 7) + " days ago");
+	      	  
+	      	  //Display bin load, color by garbage load 
+			  var load = jArray[10] / jArray[11] * 100;
+	      	  if (load < 5) {
+	      		  $("#bin_pic").attr("src", "images/bin_0.png");
+	      	  } else if  (load < 20) {
+	      		  $("#bin_pic").attr("src", "images/b20.png");
+	      	  } else if (load < 40){
+	      		  $("#bin_pic").attr("src", "images/b40.png");
+	      	  } else if (load < 60){
+	      		  $("#bin_pic").attr("src", "images/b60.png");
+	      	  } else if (load < 80){
+	      		  $("#bin_pic").attr("src", "images/b80.png");
+	      	  } else if (load < 100){
+	      		  $("#bin_pic").attr("src", "images/b100.png");
+	      	  } else {
+	      		  $("#bin_pic").attr("src", "images/b120.png");
+	      	  }
+	      	  
+	      	  //Display request button if garbage load is more than 80%
+			  if (load < 80) {
+			    $("#pickup").hide();
+			  } else {
+				$("#cannot_pickup").hide();
+			  }
+	      	  
+	      	  //Display used capacity
+	      	  var usedCapacity = jArray[10];
+	      	  console.log(usedCapacity);
+	      	  $("#used_capacity").html("<h3  class=\"u-custom-font u-font-montserrat u-text u-text-default u-text-palette-2-base u-text-7\" \r\n"
+	      			+ "data-animation-name=\"counter\" data-animation-event=\"scroll\" data-animation-duration=\"9000\">\r\n"
+	      			+ usedCapacity + "\r\n"
+	      			+ "</h3>\r\n"
+	      			+ "<p class=\"u-text u-text-default u-text-8\">Lbs<\/p>");
+			 	      	  
+	      	  
+	      	  //insert Google map
 			  const bin_loc = { lat: jArray[8], lng: jArray[9] };
 			  const map = new google.maps.Map(document.getElementById("map"), {
 			      zoom: 17,
@@ -191,7 +234,8 @@
 			      map: map,
 			      icon: 'bin_icon.png'
 			  });
-	      });
+	      });   
 	  }); 
-  </script>
+  </script> 
+  
 </html>

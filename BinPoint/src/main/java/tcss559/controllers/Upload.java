@@ -231,7 +231,7 @@ public class Upload {
             return Response
             	      .status(Response.Status.OK)
             	      .header("table", "Records")
-            	      .entity(emplArray.toString())
+            	      .entity(emplArray.toString())//.entity("[[\"6-15-2012\",\"Completed - Dup\",\"8-27-2012\",\"12-01089274\",\"0\",\"\",\"4944 W KINZIE ST\",\"60644\",41.887978,-87.749685,58,50,\"NA\"]]")
             	      .build();
         }
         catch(Exception e)
