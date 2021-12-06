@@ -50,15 +50,87 @@ import org.json.JSONObject;
 //http://localhost:port_number/user
 @Path("/company")
 public class Company {
-	// TODO: declare fields
+	// Google SQL server!
+	public String mysql_ip = "34.133.84.229";
+	public String username = "tcss559";
+	public String password = "tcss559";
+	public String connectStr ="jdbc:mysql://" + mysql_ip + ":3306/garbage?user=" + username + "&password=" + password ;
 
-	// allows the company to change garbage weights for household
-	@Path("/weight")
-	@POST
-	@Produces("text/json")
-	public void garbageWeightMeasurementPOST() {
+	// allows the company to view garbage weights for all households
+	@Path("weight")
+	@GET
+	@Produces("application/json")
+	public Response SelectWeight () {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connection = DriverManager.getConnection(connectStr); 
+			Statement sqlStatement = connection.createStatement();	 
+			ResultSet resultSet = sqlStatement.executeQuery("Select * from garbage;");
+			JSONObject housholdJSON = new JSONObject();
+			JSONArray householdArray = new JSONArray();
+			while (resultSet.next() ) {
+				JSONObject householdObject = new JSONObject();
+				householdObject.put("ID", resultSet.getString("Service Request Number"));
+				householdObject.put("Zip Code", resultSet.getInt("ZIP Code"));
+				householdObject.put("Latitude", resultSet.getDouble("Latitude"));
+				householdObject.put("Longitude", resultSet.getDouble("Longitude"));
+				householdObject.put("LoadWeight", resultSet.getInt("LoadWeight"));
+				householdObject.put("LoadCapacity", resultSet.getInt("LoadCapacity"));
+				householdObject.put("Discount", resultSet.getString("Note"));
+				householdArray.put(householdObject);
+			}
 
+			housholdJSON.put("household", householdArray);
+			return Response
+					.status(Response.Status.OK)
+					.header("table", "garbage")
+					.entity(housholdJSON.toString())
+					.build();
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+			return null;
+		}
 	}
+
+	// allows the company to view garbage weights for all households
+		@Path("weight/{id}")
+		@GET
+		@Produces("application/json")
+		public Response SelectWeight (@PathParam("id") String id) {
+			try {
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				Connection connection = DriverManager.getConnection(connectStr); 
+				Statement sqlStatement = connection.createStatement();	 
+				ResultSet resultSet = sqlStatement.executeQuery("Select * from garbage WHERE Service Request Number = " + id + ";");
+				JSONObject housholdJSON = new JSONObject();
+				JSONArray householdArray = new JSONArray();
+				while (resultSet.next() ) {
+					JSONObject householdObject = new JSONObject();
+					householdObject.put("ID", resultSet.getString("Service Request Number"));
+					householdObject.put("Zip Code", resultSet.getInt("ZIP Code"));
+					householdObject.put("Latitude", resultSet.getDouble("Latitude"));
+					householdObject.put("Longitude", resultSet.getDouble("Longitude"));
+					householdObject.put("LoadWeight", resultSet.getInt("LoadWeight"));
+					householdObject.put("LoadCapacity", resultSet.getInt("LoadCapacity"));
+					householdObject.put("Discount", resultSet.getString("Note"));
+					householdArray.put(householdObject);
+				}
+
+				housholdJSON.put("household", householdArray);
+				return Response
+						.status(Response.Status.OK)
+						.header("table", "garbage")
+						.entity(housholdJSON.toString())
+						.build();
+			}
+			catch(Exception e)
+			{
+				System.out.println(e);
+				return null;
+			}
+		}
 
 	// allows the company to change garbage weights for household
 	@Path("/weight")
@@ -85,7 +157,7 @@ public class Company {
 		// if full is true
 		// send notification to user
 	}
-	
+
 	// gives company the location to pick up full garbage
 	@Path("/location")
 	@GET
@@ -98,7 +170,7 @@ public class Company {
 		 * create the path for garbage trucks
 		 */
 	}
-	
+
 	// classifies neighborhood about garbage statistics
 	@Path("/neighborhood")
 	@GET
