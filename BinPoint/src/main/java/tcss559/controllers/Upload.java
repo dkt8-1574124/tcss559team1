@@ -54,16 +54,14 @@ public class Upload {
 	public String username = "tcss559";
 	public String password = "tcss559";
 	public String connectStr ="jdbc:mysql://" + mysql_ip + ":3306/garbage?user=" + username + "&password=" + password ;
-
+	 
 	//convert csv file into mysql
 	@GET  
     @Path("/file")  
     @Consumes(MediaType.MULTIPART_FORM_DATA)  
     public Response uploadFile() {
-		Scanner scanner = new Scanner("data\\chicago-garbage.csv");
+		//Scanner scanner = new Scanner("data\\chicago-garbage.csv");
 		try {
-			//File directory = new File("./");
-			//System.out.println(directory.getAbsolutePath());
 			Class.forName("com.mysql.cj.jdbc.Driver");
         	Connection connection = DriverManager.getConnection(connectStr); 
     		Statement sqlStatement = connection.createStatement();
@@ -91,6 +89,8 @@ public class Upload {
 			
 			List<List<String>> records = new ArrayList<>();
 			int c= 0; //set limit to 10, test first
+			
+			Scanner scanner = new Scanner(new File("data\\chicago-garbage.csv"));
 			scanner.nextLine();
 			while (scanner.hasNextLine() && c < 10) {
 		    	List<String> row = getRecordFromLine(scanner.nextLine());
