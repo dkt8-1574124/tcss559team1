@@ -54,20 +54,13 @@ public class Upload {
 	public String username = "tcss559";
 	public String password = "tcss559";
 	public String connectStr ="jdbc:mysql://" + mysql_ip + ":3306/garbage?user=" + username + "&password=" + password ;
-	 
-//	 //VM site address
-//	 public String VMmysql_ip = "35.236.24.186";
-//	 //VM MySQL user
-//	 public String username = "root";
-//	 //VM MySQL password
-//	 public String password = "Qc7BNmg3PoV94o";
-//	 public String connectStr ="jdbc:mysql://" + VMmysql_ip + ":8000/garbage?user=" + username + "&password=" + password ;
 
 	//convert csv file into mysql
 	@GET  
     @Path("/file")  
     @Consumes(MediaType.MULTIPART_FORM_DATA)  
     public Response uploadFile() {
+		Scanner scanner = new Scanner("data\\chicago-garbage.csv");
 		try {
 			//File directory = new File("./");
 			//System.out.println(directory.getAbsolutePath());
@@ -98,8 +91,6 @@ public class Upload {
 			
 			List<List<String>> records = new ArrayList<>();
 			int c= 0; //set limit to 10, test first
-			//Scanner scanner = new Scanner(new File("C:\\Users\\bradl\\git\\tcss559team1\\BinPoint\\src\\main\\java\\tcss559\\controllers\\chicago-garbage.csv"));
-			Scanner scanner = new Scanner(new File("C:\\Users\\binca\\Documents\\GitHub\\BinPoint\\src\\main\\java\\tcss559\\controllers\\chicago-garbage.csv")); 
 			scanner.nextLine();
 			while (scanner.hasNextLine() && c < 10) {
 		    	List<String> row = getRecordFromLine(scanner.nextLine());
@@ -165,7 +156,6 @@ public class Upload {
         	Connection connection = DriverManager.getConnection(connectStr); 
     		Statement sqlStatement = connection.createStatement();	 
     		ResultSet resultSet = sqlStatement.executeQuery("Select * from Records;");
-            JSONObject emplJSON = new JSONObject();
             JSONArray emplArray = new JSONArray();
             while (resultSet.next() ) {
 	            JSONArray emplObject = new JSONArray();
@@ -177,11 +167,12 @@ public class Upload {
             	emplObject.put( resultSet.getString("CartStatus"));
             	emplObject.put( resultSet.getString("StreetAddress"));
             	emplObject.put( resultSet.getString("ZipCode"));
-            	emplObject.put( resultSet.getString("Latitude"));
-            	emplObject.put( resultSet.getString("Longitude"));
-            	emplObject.put( resultSet.getString("LoadWeight"));
-            	emplObject.put( resultSet.getString("LoadCapacity"));
+            	emplObject.put( resultSet.getDouble("Latitude"));
+            	emplObject.put( resultSet.getDouble("Longitude"));
+            	emplObject.put( resultSet.getInt("LoadWeight"));
+            	emplObject.put( resultSet.getInt("LoadCapacity"));
             	emplObject.put( resultSet.getString("Note"));
+            	System.out.println(emplObject.toString());
             	emplArray.put(emplObject);
             }
             
@@ -231,7 +222,8 @@ public class Upload {
             return Response
             	      .status(Response.Status.OK)
             	      .header("table", "Records")
-            	      .entity(emplArray.toString())//.entity("[[\"6-15-2012\",\"Completed - Dup\",\"8-27-2012\",\"12-01089274\",\"0\",\"\",\"4944 W KINZIE ST\",\"60644\",41.887978,-87.749685,58,50,\"NA\"]]")
+            	      .entity(emplArray.toString())
+            	      //.entity("[[\"6-15-2012\",\"Completed - Dup\",\"8-27-2012\",\"12-01089274\",\"0\",\"\",\"4944 W KINZIE ST\",\"60644\",41.887978,-87.749685,58,50,\"NA\"]]")
             	      .build();
         }
         catch(Exception e)

@@ -8,7 +8,7 @@
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>UserHomePage</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="UserHomePage.css" media="screen">
+	<link rel="stylesheet" href="UserHomePage.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.0.3, nicepage.com">
@@ -20,13 +20,17 @@
 		  opacity: 0.5;
 		}
 	</style>
-    
-    <script type="application/ld+json">{
+	
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy_Gi3lu5iozQisJPSFPEbARrsmsx1JCQ&callback=initMap&libraries=&v=weekly"async></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="application/ld+json">
+	{
 		"@context": "http://schema.org",
 		"@type": "Organization",
 		"name": "",
 		"logo": "images/default-logo.png"
-}</script>
+	}
+	</script>
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="UserHomePage">
     <meta property="og:type" content="website">
@@ -169,8 +173,7 @@
     </section>
   </body>
   
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy_Gi3lu5iozQisJPSFPEbARrsmsx1JCQ&callback=initMap&libraries=&v=weekly"async></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
   <script type="text/javascript">
 	  $(document).ready(function () {	      
 	      $.getJSON("api/upload/select-one-random").done(function (data) {

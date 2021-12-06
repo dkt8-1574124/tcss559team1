@@ -9,11 +9,10 @@
     <title>CompanyHomePage</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
 <link rel="stylesheet" href="CompanyHomePage.css" media="screen">
-    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
+    <!-- <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script> -->
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.0.3, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
-    
     
     
     <script type="application/ld+json">{
@@ -25,6 +24,13 @@
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="CompanyHomePage">
     <meta property="og:type" content="website">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <script type="text/javascript" src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+	
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	
   </head>
   <body class="u-body"><header class="u-clearfix u-header u-header" id="sec-b6c1"><div class="u-clearfix u-sheet u-sheet-1">
         <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="150" data-image-height="142">
@@ -66,27 +72,200 @@
           </div>
         </nav>
       </div></header>
-    <section class="u-clearfix u-section-1" id="sec-20cc">
+    <section class="u-align-center u-clearfix u-gradient u-section-1" id="sec-798b">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h1 class="u-text u-text-default u-text-1">(View for companies)</h1>
-      </div>
-    </section>
-    <section class="u-align-center u-clearfix u-section-2" id="sec-da28">
-      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-        <div class="u-form u-form-1">
-          <form action="#" method="POST" class="u-clearfix u-form-horizontal u-form-spacing-15 u-inner-form" style="padding: 15px" source="custom">
-            <div class="u-form-group u-form-name u-form-group-1">
-              <label for="name-558c" class="u-form-control-hidden u-label">Name</label>
-              <input type="text" placeholder="CSV Data File" id="name-558c" name="name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="">
+        <div class="u-expanded-width u-tabs u-tabs-1">
+          <ul class="u-tab-list u-unstyled" role="tablist">
+            <li class="u-tab-item" role="presentation">
+              <a class="active u-active-white u-button-style u-tab-link u-tab-link-1" id="link-tab-0da5" href="#tab-0da5" role="tab" aria-controls="tab-0da5" aria-selected="true">Management</a>
+            </li>
+            <li class="u-tab-item" role="presentation">
+              <a class="u-active-white u-button-style u-tab-link u-tab-link-2" id="link-tab-14b7" href="#tab-14b7" role="tab" aria-controls="tab-14b7" aria-selected="false">Route Optimization</a>
+            </li>
+          </ul>
+          <div class="u-tab-content">
+            <div class="u-container-style u-tab-active u-tab-pane u-white u-tab-pane-1" id="tab-0da5" role="tabpanel" aria-labelledby="link-tab-0da5">
+              <div class="u-container-layout u-container-layout-1">
+                <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+                  <div class="u-layout">
+                    <div class="u-layout-row">
+                      <div class="u-container-style u-layout-cell u-size-60 u-layout-cell-1">
+                        <div class="u-container-layout u-valign-top u-container-layout-2">
+                          <h3 class="u-text u-text-default u-text-1">BinPoint Database (Chicago Garbage Dataset)</h3>
+                          <div class="u-table u-table-responsive u-table-1">
+                            <div style="height: 550px; width: 1000px; overflow: auto;">
+                          	<table id="myTable" class="w3-table-all w3-small">                          
+			                  	<thead>
+				                  	<tr>
+				                  		<th>Created Date</th>
+				                  		<th>Status</th>
+				                  		<th>Completed Date</th>
+				                  		<th>Request ID</th>
+				                  		<th>Address</th>
+				                  		<th>Bin Load</th>
+				                  		<th>Capacity</th>
+				                  		<th>Discount</th>
+				                  	</tr>
+				                </thead>				                
+				                <tbody id="myTableBody">
+				                <!-- fetch data from MySQL -->
+				                	<tr>
+				                		<td>1</td>
+				                		<td>Monteria</td>
+				                		<td>Columbia</td>
+				                		<td>South Africa</td>
+				                		<td>1</td>
+				                		<td>Monteria</td>
+				                		<td>Columbia</td>
+				                		<td>South Africa</td>
+				                	</tr>
+				                	<tr>
+				                		<td>2</td>
+				                		<td>2Monteria</td>
+				                		<td>2Columbia</td>
+				                		<td>2South Africa</td>
+				                		<td>2</td>
+				                		<td>2Monteria</td>
+				                		<td>2Columbia</td>
+				                		<td>2South Africa</td>
+				                	</tr>
+				                </tbody>
+				                <tfoot>
+				                	<tr>
+				                  		<th>Created Date</th>
+				                  		<th>Status</th>
+				                  		<th>Completed Date</th>
+				                  		<th>Request ID</th>
+				                  		<th>Address</th>
+				                  		<th>Bin Load</th>
+				                  		<th>Capacity</th>
+				                  		<th>Discount</th>
+				                  	</tr>
+				                </tfoot>
+			                  </table>
+                  			</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <h2 class="u-text u-text-default u-text-2">Bin Mangement Request</h2>
+                <div class="u-form u-gradient u-form-1">
+                  <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
+                    <div class="u-form-group u-form-name">
+                      <label for="name-3b9a" class="u-form-control-hidden u-label">Name</label>
+                      <input type="text" placeholder="Add a household's bin" id="name-3b9a" name="name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                    </div>
+                    <div class="u-form-group">
+                      <label for="email-3b9a" class="u-form-control-hidden u-label">Email</label>
+                      <input type="text" placeholder="Delete a household's bin" id="email-3b9a" name="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+                    </div>
+                    <div class="u-form-group">
+                      <label for="message-3b9a" class="u-form-control-hidden u-label">Message</label>
+                      <input placeholder="ID to apply discount" rows="4" cols="50" id="message-3b9a" name="message" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required" type="text">
+                    </div>
+                    <div class="u-align-center u-form-group u-form-submit">
+                      <a href="#" class="u-btn u-btn-submit u-button-style">Submit</a>
+                      <input type="submit" value="submit" class="u-form-control-hidden">
+                    </div>
+                    <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
+                    <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
+                    <input type="hidden" value="" name="recaptchaResponse">
+                  </form>
+                </div>
+              </div>
             </div>
-            <div class="u-form-group u-form-submit u-form-group-2">
-              <a href="#" class="u-btn u-btn-submit u-button-style">Upload</a>
-              <input type="submit" value="submit" class="u-form-control-hidden">
+            <div class="u-align-left u-container-style u-tab-pane u-white u-tab-pane-2" id="tab-14b7" role="tabpanel" aria-labelledby="link-tab-14b7">
+              <div class="u-container-layout u-container-layout-3">
+                <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-2">
+                  <div class="u-gutter-0 u-layout">
+                    <div class="u-layout-row">
+                      <div class="u-align-center u-container-style u-layout-cell u-size-15 u-layout-cell-2">
+                        <div class="u-container-layout u-valign-top u-container-layout-4">
+                          <h6 class="u-text u-text-default u-text-3">COLLECTION AREA</h6>
+                          <div class="u-expanded-width u-form u-form-2">
+                            <form action="#" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 0;" source="custom" name="form">
+                              <div class="u-form-group u-form-name">
+                                <label for="name-daf4" class="u-label">Collection zip code</label>
+                                <input type="text" placeholder="Enter zipcode" id="name-daf4" name="name" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white" required="">
+                              </div>
+                              <div class="u-form-group">
+                                <label for="email-daf4" class="u-label">Destination</label>
+                                <input type="text" placeholder="Pick a landfill site" id="email-daf4" name="email" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white" required="required">
+                              </div>
+                              <div class="u-form-group u-form-radiobutton u-form-group-7">
+                                <div class="u-form-radio-button-wrapper">
+                                  <input type="radio" name="radiobutton" value="Item 1">
+                                  <label class="u-label" for="radiobutton">Item 1</label>
+                                  <br>
+                                  <input type="radio" name="radiobutton" value="Item 2">
+                                  <label class="u-label" for="radiobutton">Item 2</label>
+                                  <br>
+                                  <input type="radio" name="radiobutton" value="Item 3">
+                                  <label class="u-label" for="radiobutton">Item 3</label>
+                                  <br>
+                                </div>
+                              </div>
+                              <div class="u-align-left u-form-group u-form-submit">
+                                <a href="#" class="u-active-palette-5-dark-2 u-border-none u-btn u-btn-submit u-button-style u-hover-palette-5-dark-2 u-palette-3-base u-btn-2">Submit</a>
+                                <input type="submit" value="submit" class="u-form-control-hidden">
+                              </div>
+                              <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
+                              <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
+                              <input type="hidden" value="" name="recaptchaResponse">
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="u-container-style u-layout-cell u-palette-5-dark-3 u-size-18 u-layout-cell-3">
+                        <div class="u-container-layout u-container-layout-5">
+                          <h6 class="u-align-center u-text u-text-default u-text-palette-3-base u-text-4">Collection Routes<br>By Houses
+                          </h6>
+                          <ol class="u-align-center u-text u-text-5">
+                            <li>1 (234) 567-891</li>
+                            <li>1 (234) 987-654</li>
+                            <li>1 (234) 987-654<br>
+                            </li>
+                            <li>1 (234) 987-654<br>
+                            </li>
+                            <li>1 (234) 987-654<br>
+                            </li>
+                            <li>1 (234) 987-654<br>
+                            </li>
+                            <li>1 (234) 987-654<br>
+                            </li>
+                            <li>1 (234) 987-654<br>
+                            </li>
+                            <li>1 (234) 987-654<br>
+                            </li>
+                            <li>1 (234) 987-654<br>
+                            </li>
+                            <li>...</li>
+                          </ol>
+                          <h6 class="u-text u-text-default u-text-palette-3-base u-text-6">solution technique</h6>
+                          <p class="u-align-center u-large-text u-text u-text-variant u-text-7">TOPSIS</p>
+                          <p class="u-align-center u-text u-text-8"> The Technique for Order of Preference by Similarity to Ideal Solution is a multi-criteria decision analysis method.</p>
+                          <h6 class="u-align-center u-text u-text-default u-text-palette-3-base u-text-9">prioritized order</h6>
+                          <p class="u-align-center u-text u-text-10">Garbage Weight<br>Discount Status&nbsp;<br>Last Pickup Date
+                          </p>
+                        </div>
+                      </div>
+                      <div class="u-container-style u-layout-cell u-size-27 u-layout-cell-4">
+                        <div class="u-container-layout u-container-layout-6">
+                          <div class="u-expanded u-grey-light-2 u-map">
+                            <div class="embed-responsive">
+                              <iframe class="embed-responsive-item" src="//maps.google.com/maps?output=embed&amp;q=21%20Avenue%2C%20New%20York&amp;z=10&amp;t=m" data-map="JTdCJTIyYWRkcmVzcyUyMiUzQSUyMjIxJTIwQXZlbnVlJTJDJTIwTmV3JTIwWW9yayUyMiUyQyUyMnpvb20lMjIlM0ExMCUyQyUyMnR5cGVJZCUyMiUzQSUyMnJvYWQlMjIlMkMlMjJsYW5nJTIyJTNBbnVsbCUyQyUyMmFwaUtleSUyMiUzQW51bGwlMkMlMjJtYXJrZXJzJTIyJTNBJTVCJTVEJTdE"></iframe>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="u-form-send-message u-form-send-success">Thank you! Your message has been sent.</div>
-            <div class="u-form-send-error u-form-send-message">Unable to send your message. Please fix errors then try again.</div>
-            <input type="hidden" value="" name="recaptchaResponse">
-          </form>
+          </div>
         </div>
       </div>
     </section>
@@ -107,4 +286,65 @@
       </a>. 
     </section>
   </body>
+  <script type="text/javascript">
+	  $(document).ready(function () {
+		   //convert our table to the plugin table format
+
+	      $.getJSON("api/upload/select-all").done(function (data) {
+	          processData = JSON.parse(JSON.stringify(data));      	
+	          const jArray = processData;
+		      console.log("processData");console.log(jArray);
+		      console.log("length: " + jArray.length);
+		      
+		      var databaseView = $("#myTableBody").html(""); //empty the current table
+		   	  for (let i = 0; i< jArray.length; i++) {
+		   		 const household = jArray[i]; 
+		   		 
+		   		 var createDate = household[0]; 
+		   		 var status = household[1];
+		   		 var completeDate = household[2];
+		   		 var requestID = household[3];
+		   		 //var binProcessedAmount = household[4];
+		   		 //var binProcessedStatus = household[5];
+		   		 var address = household[6];
+		   		 var binLoad = household[10];
+		   		 var binCapacity = household[11];
+		   		 var isDiscount = household[12];
+		   		 
+		   		$("#myTableBody").append("<tr class=\"w3-hover-yellow\">\r\n"
+		   	            + "<td>" + createDate + "</td>\r\n"
+		   	            + "<td>" + status + "</td>\r\n"
+		   	            + "<td>" + completeDate + "</td>\r\n"
+		   	            + "<td>" + requestID + "</td>\r\n"
+		   	            //+ "<td>" + binProcessedAmount + "</td>\r\n"
+		   	            //+ "<td>" + binProcessedStatus + "</td>\r\n"
+		   	            + "<td>" + address + "</td>\r\n"
+		   	            + "<td>" + binLoad + "</td>\r\n"
+		   	            + "<td>" + binCapacity + "</td>\r\n"
+		   	            + "<td>" + isDiscount + "</td>\r\n"
+		   	            + "</tr>");	   		
+		   	  }
+		      
+		      //after loop, add search option
+			  var tableInstance = $('#myTable').DataTable(); //important: convert our regular table into "datatable" plugin
+		   	  $("#myTable thead th").each(function() {
+			  	var title = $("#myTable tfoot th").eq($(this).index()).text();
+			    	$(this).html("<input type=\"text\" size=\"8\" placeholder=\" " + title + "\"/>") //create column seach boxes
+		      	});
+		      
+		      tableInstance.columns().every(function() {
+		      	var col =  this;	      	
+		      	var searchBoxes = $(this.header()).find("input");
+		      	
+		      	searchBoxes.on("keyup change", function () { //search keyword and change result
+		    		col.search(this.value).draw();
+		    	});
+		      	searchBoxes.on('click', function(e) {
+		      		e.stopPropagation; //disable auto order when we click text boxes
+		      	});
+		      });	
+	      });
+	      
+	  }); 
+  </script> 
 </html>
