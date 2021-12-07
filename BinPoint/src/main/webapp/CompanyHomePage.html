@@ -185,30 +185,20 @@
                         <div class="u-container-layout u-valign-top u-container-layout-4">
                           <h6 class="u-text u-text-default u-text-3">COLLECTION AREA</h6>
                           <div class="u-expanded-width u-form u-form-2">
-                            <form action="#" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 0;" source="custom" name="form">
+                          
+                            <form id="optimize-form" action="./api/company/optimize/result" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 0;" source="custom" name="form">
+                              
                               <div class="u-form-group u-form-name">
                                 <label for="name-daf4" class="u-label">Collection zip code</label>
-                                <input type="text" placeholder="Enter zipcode" id="name-daf4" name="name" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white" required="">
+                                <input type="text" placeholder="Enter zipcode" id="zipcode" name="zipcode" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white" required="">
                               </div>
                               <div class="u-form-group">
-                                <label for="email-daf4" class="u-label">Destination</label>
-                                <input type="text" placeholder="Pick a landfill site" id="email-daf4" name="email" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white" required="required">
+                                <label for="email-daf4" class="u-label">Handle All Requests On:</label>
+                                <input type="text" placeholder="Pick a date" id="collectiondate" name="collectiondate" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white" required="required">
                               </div>
-                              <div class="u-form-group u-form-radiobutton u-form-group-7">
-                                <div class="u-form-radio-button-wrapper">
-                                  <input type="radio" name="radiobutton" value="Item 1">
-                                  <label class="u-label" for="radiobutton">Item 1</label>
-                                  <br>
-                                  <input type="radio" name="radiobutton" value="Item 2">
-                                  <label class="u-label" for="radiobutton">Item 2</label>
-                                  <br>
-                                  <input type="radio" name="radiobutton" value="Item 3">
-                                  <label class="u-label" for="radiobutton">Item 3</label>
-                                  <br>
-                                </div>
-                              </div>
+
                               <div class="u-align-left u-form-group u-form-submit">
-                                <a href="#" class="u-active-palette-5-dark-2 u-border-none u-btn u-btn-submit u-button-style u-hover-palette-5-dark-2 u-palette-3-base u-btn-2">Submit</a>
+                                <a href="https://www.youtube.com/watch?v=I_fVO_NzT2g" class="u-active-palette-5-dark-2 u-border-none u-btn u-btn-submit u-button-style u-hover-palette-5-dark-2 u-palette-3-base u-btn-2">Submit</a>
                                 <input type="submit" value="submit" class="u-form-control-hidden">
                               </div>
                               <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
@@ -222,26 +212,17 @@
                         <div class="u-container-layout u-container-layout-5">
                           <h6 class="u-align-center u-text u-text-default u-text-palette-3-base u-text-4">Collection Routes<br>By Houses
                           </h6>
-                          <ol class="u-align-center u-text u-text-5">
-                            <li>1 (234) 567-891</li>
-                            <li>1 (234) 987-654</li>
-                            <li>1 (234) 987-654<br>
-                            </li>
-                            <li>1 (234) 987-654<br>
-                            </li>
-                            <li>1 (234) 987-654<br>
-                            </li>
-                            <li>1 (234) 987-654<br>
-                            </li>
-                            <li>1 (234) 987-654<br>
-                            </li>
-                            <li>1 (234) 987-654<br>
-                            </li>
-                            <li>1 (234) 987-654<br>
-                            </li>
-                            <li>1 (234) 987-654<br>
-                            </li>
-                            <li>...</li>
+                          <ol id="collection-routes" class="u-align-center u-text u-text-5">
+                            <li> (Address 1)</li>
+                            <li> (Address 2)</li>
+							<li> (Address 3)</li>
+                            <li> (Address 4)</li>
+                            <li> (Address 5)</li>
+                            <li> (Address 6)</li>
+							<li> (Address 7)</li>
+                            <li> (Address 8)</li>
+                            <li> (Address 9)</li>
+                            <li> (Address 10)</li>
                           </ol>
                           <h6 class="u-text u-text-default u-text-palette-3-base u-text-6">solution technique</h6>
                           <p class="u-align-center u-large-text u-text u-text-variant u-text-7">TOPSIS</p>
@@ -289,7 +270,7 @@
   <script type="text/javascript">
 	  $(document).ready(function () {
 		   //convert our table to the plugin table format
-
+		  
 	      $.getJSON("api/upload/select-all").done(function (data) {
 	          processData = JSON.parse(JSON.stringify(data));      	
 	          const jArray = processData;
@@ -304,8 +285,6 @@
 		   		 var status = household[1];
 		   		 var completeDate = household[2];
 		   		 var requestID = household[3];
-		   		 //var binProcessedAmount = household[4];
-		   		 //var binProcessedStatus = household[5];
 		   		 var address = household[6];
 		   		 var binLoad = household[10];
 		   		 var binCapacity = household[11];
@@ -316,8 +295,6 @@
 		   	            + "<td>" + status + "</td>\r\n"
 		   	            + "<td>" + completeDate + "</td>\r\n"
 		   	            + "<td>" + requestID + "</td>\r\n"
-		   	            //+ "<td>" + binProcessedAmount + "</td>\r\n"
-		   	            //+ "<td>" + binProcessedStatus + "</td>\r\n"
 		   	            + "<td>" + address + "</td>\r\n"
 		   	            + "<td>" + binLoad + "</td>\r\n"
 		   	            + "<td>" + binCapacity + "</td>\r\n"
@@ -342,7 +319,36 @@
 		      	searchBoxes.on('click', function(e) {
 		      		e.stopPropagation; //disable auto order when we click text boxes
 		      	});
-		      });	
+		      });
+		      
+		      //optimize submit form
+		      $("#optimize-form").submit(function(event) {
+		    	event.preventDefault();
+		    	event.stopImmediatePropagation();  
+		      //window.addEventListener( "load", function () {
+		      //$("#optimize-form").on("submit", function () {		    	
+		      	var url = $(this).attr("action")
+		      	var type = $(this).attr("method")
+		      	
+		      	$.ajax({
+		      		url: url,
+		      		type: type,
+		      		data: $(this).serialize(),
+		      		success: function(response){
+	                	processData = JSON.parse(JSON.stringify(response));
+
+						const pickupList= processData.solution.garbage_truck_1;
+				        $("#collection-routes").html(""); //empty the exist list
+	                	for (let i = 0; i < pickupList.length; i++) {
+	                		var garbageBinLoc = pickupList[i];
+	                		$("#collection-routes").append("<li>" + garbageBinLoc.location_name + "</li>");
+	                	}
+		      		}
+		      	});
+		      	return false;
+		      });
+		      
+
 	      });
 	      
 	  }); 

@@ -60,8 +60,11 @@ public class Upload {
     @Path("/file")  
     @Consumes(MediaType.MULTIPART_FORM_DATA)  
     public Response uploadFile() {
-		//Scanner scanner = new Scanner("data\\chicago-garbage.csv");
 		try {
+			//Scanner scanner = new Scanner(new File("data\\chicago-garbage.csv"));
+			Scanner scanner = new Scanner(new File("data\\chicago-garbage_small.csv"));
+			scanner.nextLine(); //skip column names
+			
 			Class.forName("com.mysql.cj.jdbc.Driver");
         	Connection connection = DriverManager.getConnection(connectStr); 
     		Statement sqlStatement = connection.createStatement();
@@ -87,14 +90,13 @@ public class Upload {
     				+ "    PRIMARY KEY (ServiceRequestNumber)\r\n"
     				+ ");");
 			
-			List<List<String>> records = new ArrayList<>();
+			List<List<String>> record = new ArrayList<>();
 			int c= 0; //set limit to 10, test first
-			
-			Scanner scanner = new Scanner(new File("data\\chicago-garbage.csv"));
-			scanner.nextLine();
-			while (scanner.hasNextLine() && c < 10) {
+			System.out.println("Start importing...");
+			while (scanner.hasNextLine() /*&& c < 5*/) {
 		    	List<String> row = getRecordFromLine(scanner.nextLine());
-		        records.add(row);
+		        record.add(row);
+		        //System.out.println("row: " + row);
 		        String createDate = row.get(0).replaceAll("/", "-");   //Need to change this to date type in the future
 		        String dumpStatus = row.get(1);
 		        String completeDate = row.get(2).replaceAll("/", "-");
@@ -107,12 +109,13 @@ public class Upload {
 		        }
 		        String cartStatus = row.get(7);
 		        String address = row.get(8);
+
 		        int zipCode = Integer.parseInt(row.get(9));
 		        double lat = Double.parseDouble(row.get(16));
 		        double lng = Double.parseDouble(row.get(17));
 		        int weightLoad = Integer.parseInt(row.get(20));      //Need to random generate later on
 		        int weightCapacity = Integer.parseInt(row.get(21));  //Need to random generate later on
-		        String note = "NA";
+		        String note = row.get(22);
 		        
 		        String SQL = "INSERT INTO Records VALUES ("
 		        		+ "\"" + createDate 		+ "\","
@@ -128,14 +131,15 @@ public class Upload {
 	            		 + weightLoad 		+ ","
 	            		 + weightCapacity 		+ ","	            		 
 	            		 + "\"" + note  + "\"" 	+  ")";
-		        System.out.println("SQL: " + SQL);
+		        //System.out.println("SQL: " + SQL);
+		        System.out.println(c +"/677");
 	    		sqlStatement.executeUpdate(SQL);
 		        c++;
 		    }
-		    display(records);		
+		    //display(record);		
             return Response
           	      .status(Response.Status.OK)
-        	      .entity("Sucessfully import to MySQL")
+        	      .entity("Sucessfully import " + c + " rows to MySQL")
           	      .build();        
         } catch(Exception e)  {
         	//System.out.println(e);
