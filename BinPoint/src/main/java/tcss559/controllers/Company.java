@@ -95,90 +95,119 @@ public class Company {
 	}
 
 	// allows the company to view garbage weights for all households
-		@Path("weight/{id}")
-		@GET
-		@Produces("application/json")
-		public Response SelectWeight (@PathParam("id") String id) {
-			try {
-				Class.forName("com.mysql.cj.jdbc.Driver");
-				Connection connection = DriverManager.getConnection(connectStr); 
-				Statement sqlStatement = connection.createStatement();	 
-				ResultSet resultSet = sqlStatement.executeQuery("Select * from garbage WHERE Service Request Number = " + id + ";");
-				JSONObject housholdJSON = new JSONObject();
-				JSONArray householdArray = new JSONArray();
-				while (resultSet.next() ) {
-					JSONObject householdObject = new JSONObject();
-					householdObject.put("ID", resultSet.getString("Service Request Number"));
-					householdObject.put("Zip Code", resultSet.getInt("ZIP Code"));
-					householdObject.put("Latitude", resultSet.getDouble("Latitude"));
-					householdObject.put("Longitude", resultSet.getDouble("Longitude"));
-					householdObject.put("LoadWeight", resultSet.getInt("LoadWeight"));
-					householdObject.put("LoadCapacity", resultSet.getInt("LoadCapacity"));
-					householdObject.put("Discount", resultSet.getString("Note"));
-					householdArray.put(householdObject);
-				}
+	@Path("weight/{id}")
+	@GET
+	@Produces("application/json")
+	public Response SelectWeight (@PathParam("id") String id) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connection = DriverManager.getConnection(connectStr); 
+			Statement sqlStatement = connection.createStatement();	 
+			ResultSet resultSet = sqlStatement.executeQuery("Select * from garbage WHERE Service Request Number = " + id + ";");
+			JSONObject housholdJSON = new JSONObject();
+			JSONArray householdArray = new JSONArray();
+			while (resultSet.next() ) {
+				JSONObject householdObject = new JSONObject();
+				householdObject.put("ID", resultSet.getString("Service Request Number"));
+				householdObject.put("Zip Code", resultSet.getInt("ZIP Code"));
+				householdObject.put("Latitude", resultSet.getDouble("Latitude"));
+				householdObject.put("Longitude", resultSet.getDouble("Longitude"));
+				householdObject.put("LoadWeight", resultSet.getInt("LoadWeight"));
+				householdObject.put("LoadCapacity", resultSet.getInt("LoadCapacity"));
+				householdObject.put("Discount", resultSet.getString("Note"));
+				householdArray.put(householdObject);
+			}
 
-				housholdJSON.put("household", householdArray);
-				return Response
-						.status(Response.Status.OK)
-						.header("table", "garbage")
-						.entity(housholdJSON.toString())
-						.build();
-			}
-			catch(Exception e)
-			{
-				System.out.println(e);
-				return null;
-			}
+			housholdJSON.put("household", householdArray);
+			return Response
+					.status(Response.Status.OK)
+					.header("table", "garbage")
+					.entity(housholdJSON.toString())
+					.build();
 		}
-
-	// allows the company to change garbage weights for household
-	@Path("/weight")
-	@DELETE
-	@Produces("text/json")
-	public void garbageWeightMeasurementDELETE() {
-
+		catch(Exception e)
+		{
+			System.out.println(e);
+			return null;
+		}
 	}
 
-	// allows the company to change garbage weights for household
-	@Path("/weight")
-	@PUT
-	@Produces("text/json")
-	public void garbageWeightMeasurementPUT() {
+	// allows the company to add households
+//	@Path("/weight")
+//	@DELETE
+//	@Produces("application/json")
+//	public Response createRecord () {
+//		Class.forName("com.mysql.cj.jdbc.Driver");
+//		Connection connection = DriverManager.getConnection(connectStr); 
+//		Statement sqlStatement = connection.createStatement();	 
+//		ResultSet resultSet = sqlStatement.executeQuery("Select * from garbage WHERE Service Request Number = " + id + ";");
+//		JSONObject housholdJSON = new JSONObject();
+//		JSONArray householdArray = new JSONArray();
+//		while (resultSet.next() ) {
+//			JSONObject householdObject = new JSONObject();
+//			householdObject.put("ID", resultSet.getString("Service Request Number"));
+//			householdObject.put("Zip Code", resultSet.getInt("ZIP Code"));
+//			householdObject.put("Latitude", resultSet.getDouble("Latitude"));
+//			householdObject.put("Longitude", resultSet.getDouble("Longitude"));
+//			householdObject.put("LoadWeight", resultSet.getInt("LoadWeight"));
+//			householdObject.put("LoadCapacity", resultSet.getInt("LoadCapacity"));
+//			householdObject.put("Discount", resultSet.getString("Note"));
+//			householdArray.put(householdObject);
+//		}
+//
+//		housholdJSON.put("household", householdArray);
+//		return Response
+//				.status(Response.Status.OK)
+//				.header("table", "garbage")
+//				.entity(housholdJSON.toString())
+//				.build();
+//	}
+//	catch(Exception e)
+//	{
+//		System.out.println(e);
+//		return null;
+//	}
+//}
 
-	}
+// allows the company to change garbage weights for household
+@Path("/weight")
+@PUT
+@Produces("text/json")
+public void garbageWeightMeasurementPUT() {
 
-	// notifies the company when a container is full and needs to be picked up
-	@Path("/full")
-	@GET
-	@Produces("text/json")
-	public void fullContainerIndicator() {
-		// point to mysql database and get boolean field (full)
-		// if full is true
-		// send notification to user
-	}
+}
 
-	// gives company the location to pick up full garbage
-	@Path("/location")
-	@GET
-	@Produces("text/json")
-	public void locationTracking() {
-		/*
-		 * scan database where users have above 75% full garbage
-		 * add those users to a map
-		 * sort the locations by proximity
-		 * create the path for garbage trucks
-		 */
-	}
+// notifies the company when a container is full and needs to be picked up
+@Path("/full")
+@GET
+@Produces("text/json")
+public void fullContainerIndicator() {
+	// point to mysql database and get boolean field (full)
+	// if full is true
+	// send notification to user
+}
 
-	// classifies neighborhood about garbage statistics
-	@Path("/neighborhood")
-	@GET
-	@Produces("text/json")
-	public void neighborhoodInformation() {
-		/*
-		 * 
-		 */
-	}
+// gives company the location to pick up full garbage
+@Path("/location")
+@GET
+@Produces("text/json")
+public void locationTracking() {
+	/*
+	 * scan database where users have above 75% full garbage
+	 * add those users to a map
+	 * sort the locations by proximity
+	 * create the path for garbage trucks
+	 */
+}
+
+// classifies neighborhood about garbage statistics
+@Path("/neighborhood")
+@GET
+@Produces("text/json")
+public void neighborhoodInformation() {
+	/*
+	 * 
+	 */
+}
 
 }
