@@ -54,98 +54,98 @@ public class Upload {
 	public String username = "tcss559";
 	public String password = "tcss559";
 	public String connectStr ="jdbc:mysql://" + mysql_ip + ":3306/garbage?user=" + username + "&password=" + password ;
-
+	 
 	//convert csv file into mysql
 	@GET  
-	@Path("/file")  
-	@Consumes(MediaType.MULTIPART_FORM_DATA)  
-	public Response uploadFile() {
+    @Path("/file")  
+    @Consumes(MediaType.MULTIPART_FORM_DATA)  
+    public Response uploadFile() {
 		//Scanner scanner = new Scanner("data\\chicago-garbage.csv");
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection connection = DriverManager.getConnection(connectStr); 
-			Statement sqlStatement = connection.createStatement();
-
-			sqlStatement.executeUpdate("DROP DATABASE IF EXISTS `garbage`;");
-			sqlStatement.executeUpdate("CREATE DATABASE IF NOT EXISTS `garbage`;");
-			sqlStatement.executeUpdate("USE `garbage`;");
-
-			sqlStatement.executeUpdate("CREATE TABLE Records (\r\n"
-					+ "    CreatedDate VARCHAR(60) NOT NULL,\r\n"
-					+ "	ProcessStatus VARCHAR(60) NOT NULL,\r\n"
-					+ "	CompletedDate VARCHAR(60) NOT NULL,\r\n"
-					+ "    ServiceRequestNumber VARCHAR(60) NOT NULL,\r\n"
-					+ "    BlackCartsDelivered INT(60),\r\n"
-					+ "	CartStatus VARCHAR(60) NOT NULL,\r\n"
-					+ "	StreetAddress VARCHAR(60) NOT NULL,\r\n"
-					+ "	ZipCode INT NOT NULL,\r\n"
-					+ "	Latitude DECIMAL(8,6) NOT NULL,\r\n"
-					+ "	Longitude DECIMAL(9,6) NOT NULL,\r\n"
-					+ "	LoadWeight INT NOT NULL,\r\n"
-					+ "	LoadCapacity INT NOT NULL,\r\n"
-					+ "    Note VARCHAR(60),\r\n"
-					+ "    PRIMARY KEY (ServiceRequestNumber)\r\n"
-					+ ");");
-
+        	Connection connection = DriverManager.getConnection(connectStr); 
+    		Statement sqlStatement = connection.createStatement();
+    				
+    		sqlStatement.executeUpdate("DROP DATABASE IF EXISTS `garbage`;");
+    		sqlStatement.executeUpdate("CREATE DATABASE IF NOT EXISTS `garbage`;");
+    		sqlStatement.executeUpdate("USE `garbage`;");
+			
+    		sqlStatement.executeUpdate("CREATE TABLE Records (\r\n"
+    				+ "    CreatedDate VARCHAR(60) NOT NULL,\r\n"
+    				+ "	ProcessStatus VARCHAR(60) NOT NULL,\r\n"
+    				+ "	CompletedDate VARCHAR(60) NOT NULL,\r\n"
+    				+ "    ServiceRequestNumber VARCHAR(60) NOT NULL,\r\n"
+    				+ "    BlackCartsDelivered INT(60),\r\n"
+    				+ "	CartStatus VARCHAR(60) NOT NULL,\r\n"
+    				+ "	StreetAddress VARCHAR(60) NOT NULL,\r\n"
+    				+ "	ZipCode INT NOT NULL,\r\n"
+    				+ "	Latitude DECIMAL(8,6) NOT NULL,\r\n"
+    				+ "	Longitude DECIMAL(9,6) NOT NULL,\r\n"
+    				+ "	LoadWeight INT NOT NULL,\r\n"
+    				+ "	LoadCapacity INT NOT NULL,\r\n"
+    				+ "    Note VARCHAR(60),\r\n"
+    				+ "    PRIMARY KEY (ServiceRequestNumber)\r\n"
+    				+ ");");
+			
 			List<List<String>> records = new ArrayList<>();
 			int c= 0; //set limit to 10, test first
-
+			
 			Scanner scanner = new Scanner(new File("data\\chicago-garbage.csv"));
 			scanner.nextLine();
 			while (scanner.hasNextLine() && c < 10) {
-				List<String> row = getRecordFromLine(scanner.nextLine());
-				records.add(row);
-				String createDate = row.get(0).replaceAll("/", "-");   //Need to change this to date type in the future
-				String dumpStatus = row.get(1);
-				String completeDate = row.get(2).replaceAll("/", "-");
-				String requestID = row.get(3);
-				int cartsNum;
-				if (row.get(5).equals("") || row.get(5) == null) {
-					cartsNum = 0; 
-				} else {
-					cartsNum = Integer.parseInt(row.get(5));
-				}
-				String cartStatus = row.get(7);
-				String address = row.get(8);
-				int zipCode = Integer.parseInt(row.get(9));
-				double lat = Double.parseDouble(row.get(16));
-				double lng = Double.parseDouble(row.get(17));
-				int weightLoad = Integer.parseInt(row.get(20));      //Need to random generate later on
-				int weightCapacity = Integer.parseInt(row.get(21));  //Need to random generate later on
-				String note = "NA";
-
-				String SQL = "INSERT INTO Records VALUES ("
-						+ "\"" + createDate 		+ "\","
-						+ "\"" + dumpStatus 		+ "\","
-						+ "\"" + completeDate 		+ "\","
-						+ "\"" + requestID 		+ "\"," 
-						+ cartsNum 		+ ","
-						+ "\"" + cartStatus 		+ "\","
-						+ "\"" + address 		+ "\","
-						+ zipCode 		+ ","
-						+ lat 		+ ","
-						+ lng 		+ ","
-						+ weightLoad 		+ ","
-						+ weightCapacity 		+ ","	            		 
-						+ "\"" + note  + "\"" 	+  ")";
-				System.out.println("SQL: " + SQL);
-				sqlStatement.executeUpdate(SQL);
-				c++;
-			}
-			display(records);		
-			return Response
-					.status(Response.Status.OK)
-					.entity("Sucessfully import to MySQL")
-					.build();        
-		} catch(Exception e)  {
-			//System.out.println(e);
-			e.printStackTrace();
-			return  Response
-					.status(Response.Status.BAD_REQUEST)
-					.entity(e.toString())
-					.build();
-		}	 
-	}
+		    	List<String> row = getRecordFromLine(scanner.nextLine());
+		        records.add(row);
+		        String createDate = row.get(0).replaceAll("/", "-");   //Need to change this to date type in the future
+		        String dumpStatus = row.get(1);
+		        String completeDate = row.get(2).replaceAll("/", "-");
+		        String requestID = row.get(3);
+		        int cartsNum;
+		        if (row.get(5).equals("") || row.get(5) == null) {
+		        	cartsNum = 0; 
+		        } else {
+		        	cartsNum = Integer.parseInt(row.get(5));
+		        }
+		        String cartStatus = row.get(7);
+		        String address = row.get(8);
+		        int zipCode = Integer.parseInt(row.get(9));
+		        double lat = Double.parseDouble(row.get(16));
+		        double lng = Double.parseDouble(row.get(17));
+		        int weightLoad = Integer.parseInt(row.get(20));      //Need to random generate later on
+		        int weightCapacity = Integer.parseInt(row.get(21));  //Need to random generate later on
+		        String note = "NA";
+		        
+		        String SQL = "INSERT INTO Records VALUES ("
+		        		+ "\"" + createDate 		+ "\","
+	            		+ "\"" + dumpStatus 		+ "\","
+	            		 + "\"" + completeDate 		+ "\","
+	            		 + "\"" + requestID 		+ "\"," 
+	            		 + cartsNum 		+ ","
+	            		 + "\"" + cartStatus 		+ "\","
+	            		 + "\"" + address 		+ "\","
+	            		 + zipCode 		+ ","
+	            		 + lat 		+ ","
+	            		 + lng 		+ ","
+	            		 + weightLoad 		+ ","
+	            		 + weightCapacity 		+ ","	            		 
+	            		 + "\"" + note  + "\"" 	+  ")";
+		        System.out.println("SQL: " + SQL);
+	    		sqlStatement.executeUpdate(SQL);
+		        c++;
+		    }
+		    display(records);		
+            return Response
+          	      .status(Response.Status.OK)
+        	      .entity("Sucessfully import to MySQL")
+          	      .build();        
+        } catch(Exception e)  {
+        	//System.out.println(e);
+        	e.printStackTrace();
+            return  Response
+          	      .status(Response.Status.BAD_REQUEST)
+            	  .entity(e.toString())
+            	  .build();
+        }	 
+    }
 
 	@Path("/select-all")
 	@GET
