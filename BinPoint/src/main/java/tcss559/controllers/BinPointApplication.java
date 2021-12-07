@@ -24,6 +24,8 @@ public class BinPointApplication extends Application{
 		resources.add(Upload.class);
 		resources.add(MultiPartFeature.class);
 		resources.add(Household.class);
+		resources.add(Company.class);
+		
 		return resources;
 	}
 }
