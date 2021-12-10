@@ -150,104 +150,104 @@ public class Upload {
             	  .build();
         }	 
     }
-	
+
 	@Path("/select-all")
 	@GET
 	@Produces("text/json")
 	public Response SelectAllRecord ()  {
-        try {
-        	Class.forName("com.mysql.cj.jdbc.Driver");
-        	Connection connection = DriverManager.getConnection(connectStr); 
-    		Statement sqlStatement = connection.createStatement();	 
-    		ResultSet resultSet = sqlStatement.executeQuery("Select * from Records;");
-            JSONArray emplArray = new JSONArray();
-            while (resultSet.next() ) {
-	            JSONArray emplObject = new JSONArray();
-            	emplObject.put( resultSet.getString("CreatedDate"));
-            	emplObject.put( resultSet.getString("ProcessStatus"));
-            	emplObject.put( resultSet.getString("CompletedDate"));
-            	emplObject.put( resultSet.getString("ServiceRequestNumber"));
-            	emplObject.put( resultSet.getString("BlackCartsDelivered"));
-            	emplObject.put( resultSet.getString("CartStatus"));
-            	emplObject.put( resultSet.getString("StreetAddress"));
-            	emplObject.put( resultSet.getString("ZipCode"));
-            	emplObject.put( resultSet.getDouble("Latitude"));
-            	emplObject.put( resultSet.getDouble("Longitude"));
-            	emplObject.put( resultSet.getInt("LoadWeight"));
-            	emplObject.put( resultSet.getInt("LoadCapacity"));
-            	emplObject.put( resultSet.getString("Note"));
-            	System.out.println(emplObject.toString());
-            	emplArray.put(emplObject);
-            }
-            
-            //emplJSON.put("employees", emplArray);
-            return Response
-            	      .status(Response.Status.OK)
-            	      .header("table", "Records")
-            	      .entity(emplArray.toString())
-            	      .build();
-        } catch(Exception e) {
-            System.out.println(e);
-            return null;
-        }
-    }
-	
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connection = DriverManager.getConnection(connectStr); 
+			Statement sqlStatement = connection.createStatement();	 
+			ResultSet resultSet = sqlStatement.executeQuery("Select * from Records;");
+			JSONArray emplArray = new JSONArray();
+			while (resultSet.next() ) {
+				JSONArray emplObject = new JSONArray();
+				emplObject.put( resultSet.getString("CreatedDate"));
+				emplObject.put( resultSet.getString("ProcessStatus"));
+				emplObject.put( resultSet.getString("CompletedDate"));
+				emplObject.put( resultSet.getString("ServiceRequestNumber"));
+				emplObject.put( resultSet.getString("BlackCartsDelivered"));
+				emplObject.put( resultSet.getString("CartStatus"));
+				emplObject.put( resultSet.getString("StreetAddress"));
+				emplObject.put( resultSet.getString("ZipCode"));
+				emplObject.put( resultSet.getDouble("Latitude"));
+				emplObject.put( resultSet.getDouble("Longitude"));
+				emplObject.put( resultSet.getInt("LoadWeight"));
+				emplObject.put( resultSet.getInt("LoadCapacity"));
+				emplObject.put( resultSet.getString("Note"));
+				System.out.println(emplObject.toString());
+				emplArray.put(emplObject);
+			}
+
+			//emplJSON.put("employees", emplArray);
+			return Response
+					.status(Response.Status.OK)
+					.header("table", "Records")
+					.entity(emplArray.toString())
+					.build();
+		} catch(Exception e) {
+			System.out.println(e);
+			return null;
+		}
+	}
+
 	//just to display for the user page
 	@Path("/select-one-random")
 	@GET
 	@Produces("text/json")
 	public Response SelectOneRandom ()  {
-        try {
-        	Class.forName("com.mysql.cj.jdbc.Driver");
-        	Connection connection = DriverManager.getConnection(connectStr); 
-    		Statement sqlStatement = connection.createStatement();	 
-    		ResultSet resultSet = sqlStatement.executeQuery("Select * from Records ORDER BY RAND() LIMIT 1;");
-            JSONObject emplJSON = new JSONObject();
-            JSONArray emplArray = new JSONArray();
-            while (resultSet.next() ) {
-	            JSONArray emplObject = new JSONArray();
-            	emplObject.put( resultSet.getString("CreatedDate"));
-            	emplObject.put( resultSet.getString("ProcessStatus"));
-            	emplObject.put( resultSet.getString("CompletedDate"));
-            	emplObject.put( resultSet.getString("ServiceRequestNumber"));
-            	emplObject.put( resultSet.getString("BlackCartsDelivered"));
-            	emplObject.put( resultSet.getString("CartStatus"));
-            	emplObject.put( resultSet.getString("StreetAddress"));
-            	emplObject.put( resultSet.getString("ZipCode"));
-            	emplObject.put( resultSet.getDouble("Latitude"));
-            	emplObject.put( resultSet.getDouble("Longitude"));
-            	emplObject.put( resultSet.getInt("LoadWeight"));
-            	emplObject.put( resultSet.getInt("LoadCapacity"));
-            	emplObject.put( resultSet.getString("Note"));
-            	emplArray.put(emplObject);
-            }
-            
-            System.out.println("emplArray.toString(): " + emplArray.toString());
-            return Response
-            	      .status(Response.Status.OK)
-            	      .header("table", "Records")
-            	      .entity(emplArray.toString())
-            	      //.entity("[[\"6-15-2012\",\"Completed - Dup\",\"8-27-2012\",\"12-01089274\",\"0\",\"\",\"4944 W KINZIE ST\",\"60644\",41.887978,-87.749685,58,50,\"NA\"]]")
-            	      .build();
-        }
-        catch(Exception e)
-        {
-            System.out.println(e);
-            return null;
-        }
-    }
-	
-	private List<String> getRecordFromLine(String line) {
-	    List<String> values = new ArrayList<String>();
-	    try (Scanner rowScanner = new Scanner(line)) {
-	        rowScanner.useDelimiter(",");
-	        while (rowScanner.hasNext()) {
-	            values.add(rowScanner.next());
-	        }
-	    }
-	    return values;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connection = DriverManager.getConnection(connectStr); 
+			Statement sqlStatement = connection.createStatement();	 
+			ResultSet resultSet = sqlStatement.executeQuery("Select * from Records ORDER BY RAND() LIMIT 1;");
+			JSONObject emplJSON = new JSONObject();
+			JSONArray emplArray = new JSONArray();
+			while (resultSet.next() ) {
+				JSONArray emplObject = new JSONArray();
+				emplObject.put( resultSet.getString("CreatedDate"));
+				emplObject.put( resultSet.getString("ProcessStatus"));
+				emplObject.put( resultSet.getString("CompletedDate"));
+				emplObject.put( resultSet.getString("ServiceRequestNumber"));
+				emplObject.put( resultSet.getString("BlackCartsDelivered"));
+				emplObject.put( resultSet.getString("CartStatus"));
+				emplObject.put( resultSet.getString("StreetAddress"));
+				emplObject.put( resultSet.getString("ZipCode"));
+				emplObject.put( resultSet.getDouble("Latitude"));
+				emplObject.put( resultSet.getDouble("Longitude"));
+				emplObject.put( resultSet.getInt("LoadWeight"));
+				emplObject.put( resultSet.getInt("LoadCapacity"));
+				emplObject.put( resultSet.getString("Note"));
+				emplArray.put(emplObject);
+			}
+
+			System.out.println("emplArray.toString(): " + emplArray.toString());
+			return Response
+					.status(Response.Status.OK)
+					.header("table", "Records")
+					.entity(emplArray.toString())
+					//.entity("[[\"6-15-2012\",\"Completed - Dup\",\"8-27-2012\",\"12-01089274\",\"0\",\"\",\"4944 W KINZIE ST\",\"60644\",41.887978,-87.749685,58,50,\"NA\"]]")
+					.build();
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+			return null;
+		}
 	}
-	
+
+	private List<String> getRecordFromLine(String line) {
+		List<String> values = new ArrayList<String>();
+		try (Scanner rowScanner = new Scanner(line)) {
+			rowScanner.useDelimiter(",");
+			while (rowScanner.hasNext()) {
+				values.add(rowScanner.next());
+			}
+		}
+		return values;
+	}
+
 	private void display(List<List<String>> records){
 		String result = "";
 		for(int i = 0; i < records.size(); i++){
