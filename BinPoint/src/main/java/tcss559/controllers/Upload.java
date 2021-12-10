@@ -132,7 +132,7 @@ public class Upload {
 	            		 + weightCapacity 		+ ","	            		 
 	            		 + "\"" + note  + "\"" 	+  ")";
 		        //System.out.println("SQL: " + SQL);
-		        System.out.println(c +"/677");
+		        System.out.println(c);
 	    		sqlStatement.executeUpdate(SQL);
 		        c++;
 		    }

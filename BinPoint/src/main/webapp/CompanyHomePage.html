@@ -50,9 +50,6 @@
             <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Home.html" style="padding: 10px 20px;">Home</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="About.html" style="padding: 10px 20px;">About</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Contact.html" style="padding: 10px 20px;">Contact</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Page-1.html" style="padding: 10px 20px;">Page 1</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="UserHomePage.html" style="padding: 10px 20px;">UserHomePage</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="CompanyHomePage.html" style="padding: 10px 20px;">CompanyHomePage</a>
 </li></ul>
           </div>
           <div class="u-nav-container-collapse">
@@ -62,9 +59,6 @@
                 <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Home.html">Home</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="About.html">About</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Contact.html">Contact</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Page-1.html">Page 1</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="UserHomePage.html">UserHomePage</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="CompanyHomePage.html">CompanyHomePage</a>
 </li></ul>
               </div>
             </div>
@@ -152,22 +146,22 @@
                 </div>
                 <h2 class="u-text u-text-default u-text-2">Bin Mangement Request</h2>
                 <div class="u-form u-gradient u-form-1">
-                  <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
+                  <form action="./api/company/modify" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
                     <div class="u-form-group u-form-name">
                       <label for="name-3b9a" class="u-form-control-hidden u-label">Name</label>
-                      <input type="text" placeholder="Add a household's bin" id="name-3b9a" name="name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                      <input type="text" placeholder="Add a household's bin" id="add" name="add" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                     </div>
                     <div class="u-form-group">
                       <label for="email-3b9a" class="u-form-control-hidden u-label">Email</label>
-                      <input type="text" placeholder="Delete a household's bin" id="email-3b9a" name="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+                      <input type="text" placeholder="Delete a household's bin" id="delete" name="delete" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                     </div>
                     <div class="u-form-group">
                       <label for="message-3b9a" class="u-form-control-hidden u-label">Message</label>
-                      <input placeholder="ID to apply discount" rows="4" cols="50" id="message-3b9a" name="message" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required" type="text">
+                      <input placeholder="ID to apply discount" rows="4" cols="50" id="discount" name="discount" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" type="text">
                     </div>
                     <div class="u-align-center u-form-group u-form-submit">
                       <a href="#" class="u-btn u-btn-submit u-button-style">Submit</a>
-                      <input type="submit" value="submit" class="u-form-control-hidden">
+                      <input type="submit" value="submit" id="refresh-table" class="u-form-control-hidden">
                     </div>
                     <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
                     <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
@@ -235,8 +229,8 @@
                       <div class="u-container-style u-layout-cell u-size-27 u-layout-cell-4">
                         <div class="u-container-layout u-container-layout-6">
                           <div class="u-expanded u-grey-light-2 u-map">
-                            <div class="embed-responsive">
-                              <iframe class="embed-responsive-item" src="//maps.google.com/maps?output=embed&amp;q=21%20Avenue%2C%20New%20York&amp;z=10&amp;t=m" data-map="JTdCJTIyYWRkcmVzcyUyMiUzQSUyMjIxJTIwQXZlbnVlJTJDJTIwTmV3JTIwWW9yayUyMiUyQyUyMnpvb20lMjIlM0ExMCUyQyUyMnR5cGVJZCUyMiUzQSUyMnJvYWQlMjIlMkMlMjJsYW5nJTIyJTNBbnVsbCUyQyUyMmFwaUtleSUyMiUzQW51bGwlMkMlMjJtYXJrZXJzJTIyJTNBJTVCJTVEJTdE"></iframe>
+                            <div id="map" class="embed-responsive">
+
                             </div>
                           </div>
                         </div>
@@ -253,7 +247,7 @@
     
     
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-fed6"><div class="u-clearfix u-sheet u-sheet-1">
-        <p class="u-small-text u-text u-text-variant u-text-1">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+        <p class="u-small-text u-text u-text-variant u-text-1">2021 Fall Computing Service Project. Powered by NicePage.</p>
       </div></footer>
     <section class="u-backlink u-clearfix u-grey-80">
       <a class="u-link" href="https://nicepage.com/html-templates" target="_blank">
@@ -269,11 +263,9 @@
   </body>
   <script type="text/javascript">
 	  $(document).ready(function () {
-		   //convert our table to the plugin table format
-		  
-	      $.getJSON("api/upload/select-all").done(function (data) {
-	          processData = JSON.parse(JSON.stringify(data));      	
-	          const jArray = processData;
+	        $.getJSON("api/upload/select-all").done(function (data) {
+	          var processData = JSON.parse(JSON.stringify(data));      	
+	          var jArray = processData;
 		      console.log("processData");console.log(jArray);
 		      console.log("length: " + jArray.length);
 		      
@@ -283,7 +275,7 @@
 		   		 
 		   		 var createDate = household[0]; 
 		   		 var status = household[1];
-		   		 var completeDate = household[2];
+		   		 var completeDate = household[7];
 		   		 var requestID = household[3];
 		   		 var address = household[6];
 		   		 var binLoad = household[10];
@@ -303,11 +295,11 @@
 		   	  }
 		      
 		      //after loop, add search option
-			  var tableInstance = $('#myTable').DataTable(); //important: convert our regular table into "datatable" plugin
+			  var tableInstance = $('#myTable').DataTable(); //IMPORTANT: convert our regular table into "datatable" plugin
 		   	  $("#myTable thead th").each(function() {
 			  	var title = $("#myTable tfoot th").eq($(this).index()).text();
 			    	$(this).html("<input type=\"text\" size=\"8\" placeholder=\" " + title + "\"/>") //create column seach boxes
-		      	});
+		      });
 		      
 		      tableInstance.columns().every(function() {
 		      	var col =  this;	      	
@@ -320,37 +312,88 @@
 		      		e.stopPropagation; //disable auto order when we click text boxes
 		      	});
 		      });
-		      
-		      //optimize submit form
-		      $("#optimize-form").submit(function(event) {
-		    	event.preventDefault();
-		    	event.stopImmediatePropagation();  
-		      //window.addEventListener( "load", function () {
-		      //$("#optimize-form").on("submit", function () {		    	
-		      	var url = $(this).attr("action")
-		      	var type = $(this).attr("method")
-		      	
-		      	$.ajax({
-		      		url: url,
-		      		type: type,
-		      		data: $(this).serialize(),
-		      		success: function(response){
-	                	processData = JSON.parse(JSON.stringify(response));
-
-						const pickupList= processData.solution.garbage_truck_1;
-				        $("#collection-routes").html(""); //empty the exist list
-	                	for (let i = 0; i < pickupList.length; i++) {
-	                		var garbageBinLoc = pickupList[i];
-	                		$("#collection-routes").append("<li>" + garbageBinLoc.location_name + "</li>");
-	                	}
-		      		}
-		      	});
-		      	return false;
-		      });
-		      
-
 	      });
-	      
-	  }); 
-  </script> 
+   
+	      //optimize submit form
+	      $("#optimize-form").submit(function(event) {
+	    	event.preventDefault();
+	    	event.stopImmediatePropagation();  
+	    	
+	      	var url = $(this).attr("action")
+	      	var type = $(this).attr("method")
+	      	
+	      	$.ajax({
+	      		url: url,
+	      		type: type,
+	      		data: $(this).serialize(),
+	      		success: function(response){
+                	processData = JSON.parse(JSON.stringify(response));
+         
+					var locations = [];
+					const pickupList= processData.solution.garbage_truck_1;
+			        $("#collection-routes").html(""); //empty the exist list
+                	for (let i = 1; i < pickupList.length; i++) {
+                		var garbageBinLoc = pickupList[i];
+                		$("#collection-routes").append("<li>" + garbageBinLoc.location_name + "</li>");
+                		locations.push([garbageBinLoc.location_name,garbageBinLoc.lat,garbageBinLoc.lng]);
+                	}
+			        console.log(locations);
+          		    
+          		    //Code preference to display routes: https://coderedirect.com/questions/192686/how-to-make-route-direction-between-multiple-markers
+                	var geocoder;
+                	var map;
+                	var directionsDisplay;
+                	var directionsService = new google.maps.DirectionsService();
+                	directionsDisplay = new google.maps.DirectionsRenderer();
+
+
+                	  var map = new google.maps.Map(document.getElementById('map'), {
+                	    zoom: 10,
+                	    center: new google.maps.LatLng(-41.8781, 87.6298),
+                	    mapTypeId: google.maps.MapTypeId.ROADMAP
+                	  });
+                	  directionsDisplay.setMap(map);
+                	  var infowindow = new google.maps.InfoWindow();
+
+                	  var marker, i;
+                	  var request = {
+                	    travelMode: google.maps.TravelMode.DRIVING
+                	  };
+                	  for (i = 0; i < locations.length; i++) {
+                	    marker = new google.maps.Marker({
+                	      position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                	    });
+
+                	    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                	      return function() {
+                	        infowindow.setContent(locations[i][0]);
+                	        infowindow.open(map, marker);
+                	      }
+                	    })(marker, i));
+
+                	    if (i == 0) request.origin = marker.getPosition();
+                	    else if (i == locations.length - 1) request.destination = marker.getPosition();
+                	    else {
+                	      if (!request.waypoints) request.waypoints = [];
+                	      request.waypoints.push({
+                	        location: marker.getPosition(),
+                	        stopover: true
+                	      });
+                	    }
+
+                	  }
+                	  directionsService.route(request, function(result, status) {
+                	    if (status == google.maps.DirectionsStatus.OK) {
+                	      directionsDisplay.setDirections(result);
+                	    }
+                	  });        	
+	      		}
+	      	});
+	      	return false;
+	      });
+
+	  });
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy_Gi3lu5iozQisJPSFPEbARrsmsx1JCQ"></script>
+  
 </html>
